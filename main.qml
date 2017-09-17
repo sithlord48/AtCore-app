@@ -1,50 +1,126 @@
 import QtQuick 2.1
+import QtQuick.Controls 2.2
+import QtQuick.Layouts 1.3
 import org.kde.kirigami 2.1 as Kirigami
+import QtQuick.Extras 1.4
 
 Kirigami.ApplicationItem {
     id: root
 
     globalDrawer: Kirigami.GlobalDrawer {
+        id: left
         title: "AtCore Gui"
         titleIcon: "applications-graphics"
-
-        actions: [
-            Kirigami.Action {
-                text: "Control"
-                iconName: "view-list-icons"
-                Kirigami.Action {
-                    text: "Up"
-                    iconName: "go-up"
-                }
-                Kirigami.Action {
-                    text: "Down"
-                    iconName: "go-down"
-                }
-                Kirigami.Action {
-                    text: "Right"
-                    iconName: "go-next"
-                }
-                Kirigami.Action {
-                    text: "Left"
-                    iconName: "go-previous"
-                }
-            },
-            Kirigami.Action {
-                text: "Files"
-                iconName: "view-list-icons"
-                Kirigami.Action {
-                    text: "Last file"
-                }
-                Kirigami.Action {
-                    text: "Last file"
-                }
-            },
-            Kirigami.Action {
-                text: "Something"
-            }
-        ]
         handleVisible: true
+
+        ColumnLayout {
+            id: mainLayout
+            Layout.fillHeight : true
+            anchors.fill: parent
+            RowLayout {
+                TextField {
+                    placeholderText: "/dev/ttyUSB0"
+                    Layout.fillWidth: true
+                }
+                Button {
+                    text: "Connect"
+                }
+            }
+
+            RowLayout {
+                TextField {
+                    placeholderText: "Load file.."
+                    Layout.fillWidth: true
+                }
+                Button {
+                    text: "Print"
+                }
+            }
+
+            RowLayout {
+                Button {
+                    text: "Stop"
+                }
+                Button {
+                    text: "Emergency"
+                }
+                Button {
+                    Layout.fillWidth: true
+                    text: "Motors Off"
+                }
+            }
+
+            RowLayout {
+                Pie {
+                    id: pie
+                    visible: true
+                }
+            }
+
+            RowLayout {
+                Button {
+                    text: "Relative Mode"
+                    onClicked: {
+                        text = text == "Relative Mode" ? "Absolute" : "Relative"
+                        text = text + " Mode"
+                    }
+                }
+                SpinBox {
+                    Layout.fillWidth: true
+                    editable: true
+                    value: 50
+                    textFromValue: function(value) {return value + " mm/s"}
+                }
+            }
+
+            RowLayout {
+                Label {
+                    text: "Heat:"
+                    color: "gray"
+                }
+                Button {
+                    Layout.fillWidth: true
+                    text: "Off"
+                }
+                ComboBox {
+                    editable: true
+                    validator: IntValidator {
+                        bottom: 0
+                        top: 300
+                    }
+                    model: [185, 235]
+                }
+                Button {
+                    Layout.fillWidth: true
+                    text: "Set"
+                }
+            }
+
+            RowLayout {
+                Label {
+                    text: "Bed :"
+                    color: "gray"
+                }
+                Button {
+                    Layout.fillWidth: true
+                    text: "Off"
+                }
+                ComboBox {
+                    editable: true
+                    validator: IntValidator {
+                        bottom: 0
+                        top: 300
+                    }
+                    model: [50, 80]
+                }
+                Button {
+                    Layout.fillWidth: true
+                    text: "Set"
+                }
+            }
+        }
     }
+
     contextDrawer: Kirigami.ContextDrawer {
         id: contextDrawer
     }
@@ -71,6 +147,4 @@ Kirigami.ApplicationItem {
             }
         }
     }
-
-
 }
