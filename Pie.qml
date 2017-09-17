@@ -251,7 +251,7 @@ Item {
     }
 
     Button {
-        x: pieMenu.width - width
+        x: pieMenu.x + pieMenu.width - width
         y: pieMenu.y
         width: (pieMenu.width - pieMenu.width/Math.sqrt(2))/2
         height: width
@@ -269,7 +269,7 @@ Item {
     }
 
     Button {
-        x: pieMenu.width - width
+        x: pieMenu.x + pieMenu.width - width
         y: pieMenu.y + pieMenu.height - height
         width: (pieMenu.width - pieMenu.width/Math.sqrt(2))/2
         height: width
