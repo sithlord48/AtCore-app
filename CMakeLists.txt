@@ -13,6 +13,11 @@ include(KDECMakeSettings)
 include(ECMInstallIcons)
 include(ECMAddAppIcon)
 
+if (CMAKE_SYSTEM_NAME STREQUAL "Android")
+    find_package(Qt5AndroidExtras ${REQUIRED_QT_VERSION} REQUIRED)
+    set(atcore-gui_EXTRA_LIBS Qt5::AndroidExtras Qt5::QuickControls2)
+endif()
+
 find_package(Qt5 ${REQUIRED_QT_VERSION} REQUIRED NO_MODULE COMPONENTS Core Quick Test Gui Svg QuickControls2)
 
 set(atcore-gui_SRCS
@@ -22,6 +27,6 @@ set(atcore-gui_SRCS
 qt5_add_resources(RESOURCES resources.qrc)
 
 add_executable(atcore-gui ${atcore-gui_SRCS} ${RESOURCES})
-target_link_libraries(atcore-gui Qt5::Core  Qt5::Qml Qt5::Quick Qt5::Svg)
+target_link_libraries(atcore-gui Qt5::Core  Qt5::Qml Qt5::Quick Qt5::Svg ${atcore-gui_EXTRA_LIBS})
 
 install(TARGETS atcore-gui ${KF5_INSTALL_TARGETS_DEFAULT_ARGS})
