@@ -15,19 +15,43 @@ Kirigami.ApplicationItem {
 
         ColumnLayout {
             id: mainLayout
-            Layout.fillHeight : true
-            anchors.fill: parent
+
+            Button {
+                text: "Connection"
+                Layout.fillWidth: true
+                onClicked: {
+                    connectionMenu.visible = !connectionMenu.visible
+                }
+            }
+
             RowLayout {
+                id: connectionMenu
+                visible: false
+
                 TextField {
                     placeholderText: "/dev/ttyUSB0"
                     Layout.fillWidth: true
                 }
                 Button {
                     text: "Connect"
+                    onClicked: {
+                        rowPie.visible = !rowPie.visible
+                    }
+                }
+            }
+
+            Button {
+                text: "Print configurations"
+                Layout.fillWidth: true
+                onClicked: {
+                    printMenu.visible = !printMenu.visible
                 }
             }
 
             RowLayout {
+                id: printMenu
+                visible: false
+
                 TextField {
                     placeholderText: "Load file.."
                     Layout.fillWidth: true
@@ -37,86 +61,107 @@ Kirigami.ApplicationItem {
                 }
             }
 
-            RowLayout {
-                Button {
-                    text: "Stop"
-                }
-                Button {
-                    text: "Emergency"
-                }
-                Button {
-                    Layout.fillWidth: true
-                    text: "Motors Off"
+            Button {
+                text: "Controls"
+                Layout.fillWidth: true
+                onClicked: {
+                    controlMenu.visible = !controlMenu.visible
                 }
             }
 
-            RowLayout {
-                Pie {
-                    id: pie
-                    visible: true
-                }
-            }
+            ColumnLayout {
+                id: controlMenu
+                visible: false
+                width: parent.width
 
-            RowLayout {
-                Button {
-                    text: "Relative Mode"
-                    onClicked: {
-                        text = text == "Relative Mode" ? "Absolute" : "Relative"
-                        text = text + " Mode"
+                RowLayout {
+                    Button {
+                        text: "Stop"
+                    }
+                    Button {
+                        text: "Emergency"
+                    }
+                    Button {
+                        Layout.fillWidth: true
+                        text: "Motors Off"
                     }
                 }
-                SpinBox {
-                    Layout.fillWidth: true
-                    editable: true
-                    value: 50
-                    textFromValue: function(value) {return value + " mm/s"}
+
+                RowLayout {
+                    id: rowPie
+                    height: width
+                    Pie {
+                        id: pie
+                        width: rowPie.width
+                        visible: true
+                    }
+                }
+
+                RowLayout {
+                    Button {
+                        text: "Relative Mode"
+                        onClicked: {
+                            text = text == "Relative Mode" ? "Absolute" : "Relative"
+                            text = text + " Mode"
+                        }
+                    }
+                    SpinBox {
+                        Layout.fillWidth: true
+                        editable: true
+                        value: 50
+                        textFromValue: function(value) {return value + " mm/s"}
+                    }
+                }
+
+                RowLayout {
+                    Label {
+                        text: "Heat:"
+                        color: "gray"
+                    }
+                    Button {
+                        Layout.fillWidth: true
+                        text: "Off"
+                    }
+                    ComboBox {
+                        editable: true
+                        validator: IntValidator {
+                            bottom: 0
+                            top: 300
+                        }
+                        model: [185, 235]
+                    }
+                    Button {
+                        Layout.fillWidth: true
+                        text: "Set"
+                    }
+                }
+
+                RowLayout {
+                    Label {
+                        text: "Bed :"
+                        color: "gray"
+                    }
+                    Button {
+                        Layout.fillWidth: true
+                        text: "Off"
+                    }
+                    ComboBox {
+                        editable: true
+                        validator: IntValidator {
+                            bottom: 0
+                            top: 300
+                        }
+                        model: [50, 80]
+                    }
+                    Button {
+                        Layout.fillWidth: true
+                        text: "Set"
+                    }
                 }
             }
 
-            RowLayout {
-                Label {
-                    text: "Heat:"
-                    color: "gray"
-                }
-                Button {
-                    Layout.fillWidth: true
-                    text: "Off"
-                }
-                ComboBox {
-                    editable: true
-                    validator: IntValidator {
-                        bottom: 0
-                        top: 300
-                    }
-                    model: [185, 235]
-                }
-                Button {
-                    Layout.fillWidth: true
-                    text: "Set"
-                }
-            }
-
-            RowLayout {
-                Label {
-                    text: "Bed :"
-                    color: "gray"
-                }
-                Button {
-                    Layout.fillWidth: true
-                    text: "Off"
-                }
-                ComboBox {
-                    editable: true
-                    validator: IntValidator {
-                        bottom: 0
-                        top: 300
-                    }
-                    model: [50, 80]
-                }
-                Button {
-                    Layout.fillWidth: true
-                    text: "Set"
-                }
+            Item {
+                Layout.fillHeight: true
             }
         }
     }
