@@ -4,9 +4,14 @@ import QtQuick.Layouts 1.3
 import org.kde.kirigami 2.1 as Kirigami
 import QtQuick.Extras 1.4
 import QtQuick.Dialogs 1.0
+import org.kde.atcore 1.0
 
 Kirigami.ApplicationItem {
     id: root
+
+    AtCore {
+        id: atcore
+    }
 
     globalDrawer: Kirigami.GlobalDrawer {
         id: left
@@ -22,12 +27,14 @@ Kirigami.ApplicationItem {
                 id: connectionMenu
 
                 TextField {
+                    id: devText
                     placeholderText: "/dev/ttyUSB0"
                     Layout.fillWidth: true
                 }
                 Button {
                     text: "Connect"
                     onClicked: {
+                        atcore.initSerial(devText.text, 115200)
                         rowPie.visible = !rowPie.visible
                     }
                 }
