@@ -47,6 +47,9 @@ find_package(Qt5 ${REQUIRED_QT_VERSION} REQUIRED NO_MODULE COMPONENTS
     3DRender
     3DInput
 )
+find_package(AtCore REQUIRED COMPONENTS
+    AtCore
+)
 
 set(atcore-gui_SRCS
     main.cpp
@@ -57,6 +60,7 @@ qt5_add_resources(RESOURCES resources.qrc)
 add_subdirectory(viewer3d)
 
 add_executable(atcore-gui ${atcore-gui_SRCS} ${RESOURCES})
-target_link_libraries(atcore-gui Qt5::Core  Qt5::Qml Qt5::Quick Qt5::Svg AtCore3D ${atcore-gui_EXTRA_LIBS})
+
+target_link_libraries(atcore-gui AtCore::AtCore Qt5::Core  Qt5::Qml Qt5::Quick Qt5::Svg AtCore3D ${atcore-gui_EXTRA_LIBS})
 
 install(TARGETS atcore-gui ${KF5_INSTALL_TARGETS_DEFAULT_ARGS})
