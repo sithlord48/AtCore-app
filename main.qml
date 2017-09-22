@@ -26,15 +26,24 @@ Kirigami.ApplicationItem {
             RowLayout {
                 id: connectionMenu
 
-                TextField {
+                ComboBox {
                     id: devText
-                    placeholderText: "/dev/ttyUSB0"
+                    editable: true
+                    model: atcore.serialPorts
+                    Layout.preferredWidth: 150
                     Layout.fillWidth: true
+                }
+                ComboBox{
+                    id: devSpeed
+                    editable: true
+                    model: atcore.portSpeeds
+                    Layout.preferredWidth: 150
+                    Layout.maximumWidth: 225
                 }
                 Button {
                     text: "Connect"
                     onClicked: {
-                        atcore.initSerial(devText.text, 115200)
+                        atcore.initSerial(devText.text, devSpeed.currentText.valueOf())
                         rowPie.visible = !rowPie.visible
                     }
                 }
