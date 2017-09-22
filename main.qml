@@ -78,6 +78,7 @@ Kirigami.ApplicationItem {
 
                 Button {
                     text: "Print"
+                    onClicked: atcore.print(cleanPath)
                 }
             }
 
@@ -88,9 +89,11 @@ Kirigami.ApplicationItem {
                 RowLayout {
                     Button {
                         text: "Stop"
+                        onClicked: atcore.stop()
                     }
                     Button {
                         text: "Emergency"
+                        onClicked: atcore.emergencyStop()
                     }
                     Button {
                         Layout.fillWidth: true
