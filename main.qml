@@ -128,6 +128,7 @@ Kirigami.ApplicationItem {
                     Button {
                         Layout.fillWidth: true
                         text: "Set"
+                        onClicked: atcore.setExtruderTemp(hendTemp.currentText.valueOf(), 0)
                     }
                 }
 
@@ -141,6 +142,7 @@ Kirigami.ApplicationItem {
                         text: "Off"
                     }
                     ComboBox {
+                        id: hendTemp
                         editable: true
                         validator: IntValidator {
                             bottom: 0
@@ -164,6 +166,7 @@ Kirigami.ApplicationItem {
                         text: "Off"
                     }
                     ComboBox {
+                        id: bedTemp
                         editable: true
                         validator: IntValidator {
                             bottom: 0
@@ -174,6 +177,7 @@ Kirigami.ApplicationItem {
                     Button {
                         Layout.fillWidth: true
                         text: "Set"
+                        onClicked: atcore.setBedTemp(bedTemp.currentText.valueOf())
                     }
                 }
             }
