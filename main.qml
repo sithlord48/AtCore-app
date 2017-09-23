@@ -3,6 +3,7 @@ import QtQuick.Controls 2.2
 import QtQuick.Layouts 1.3
 import org.kde.kirigami 2.1 as Kirigami
 import QtQuick.Extras 1.4
+import QtQuick.Dialogs 1.0
 
 Kirigami.ApplicationItem {
     id: root
@@ -35,10 +36,28 @@ Kirigami.ApplicationItem {
             RowLayout {
                 id: printMenu
 
-                TextField {
-                    placeholderText: "Load file.."
+                Button {
+                    text: "Load file..."
                     Layout.fillWidth: true
+                    onClicked: {
+                        fileDialog.visible = true
+                    }
                 }
+
+                FileDialog {
+                    id: fileDialog
+                    title: "Please choose a file"
+                    folder: shortcuts.home
+                    onAccepted: {
+                        // https://stackoverflow.com/questions/24927850/get-the-path-from-a-qml-url
+                        var path = fileDialog.fileUrl.toString();
+                        // remove prefixed "file:///"
+                        path = path.replace(/^(file:\/{3})/,"");
+                        // unescape html codes like '%23' for '#'
+                        var cleanPath = decodeURIComponent(path);
+                    }
+                }
+
                 Button {
                     text: "Print"
                 }
