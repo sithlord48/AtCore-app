@@ -16,17 +16,8 @@ Kirigami.ApplicationItem {
         ColumnLayout {
             id: mainLayout
 
-            Button {
-                text: "Connection"
-                Layout.fillWidth: true
-                onClicked: {
-                    connectionMenu.visible = !connectionMenu.visible
-                }
-            }
-
             RowLayout {
                 id: connectionMenu
-                visible: false
 
                 TextField {
                     placeholderText: "/dev/ttyUSB0"
@@ -40,17 +31,8 @@ Kirigami.ApplicationItem {
                 }
             }
 
-            Button {
-                text: "Print configurations"
-                Layout.fillWidth: true
-                onClicked: {
-                    printMenu.visible = !printMenu.visible
-                }
-            }
-
             RowLayout {
                 id: printMenu
-                visible: false
 
                 TextField {
                     placeholderText: "Load file.."
@@ -61,17 +43,8 @@ Kirigami.ApplicationItem {
                 }
             }
 
-            Button {
-                text: "Controls"
-                Layout.fillWidth: true
-                onClicked: {
-                    controlMenu.visible = !controlMenu.visible
-                }
-            }
-
             ColumnLayout {
                 id: controlMenu
-                visible: false
                 width: parent.width
 
                 RowLayout {
