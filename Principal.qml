@@ -1,8 +1,5 @@
 import QtQuick 2.1
-import QtQuick.Controls 2.2
-import QtQuick.Layouts 1.3
 import org.kde.kirigami 2.1 as Kirigami
-import QtQuick.Extras 1.4
 import QtCharts 2.2
 import QtQuick.Scene3D 2.0
 
