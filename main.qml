@@ -85,6 +85,10 @@ Kirigami.ApplicationItem {
                         value: 50
                         textFromValue: function(value) {return value + " mm"}
                     }
+                    Button {
+                        Layout.fillWidth: true
+                        text: "Set"
+                    }
                 }
 
                 RowLayout {
