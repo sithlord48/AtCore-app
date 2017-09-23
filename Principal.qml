@@ -4,8 +4,12 @@ import QtQuick.Layouts 1.3
 import org.kde.kirigami 2.1 as Kirigami
 import QtQuick.Extras 1.4
 import QtCharts 2.2
+import QtQuick.Scene3D 2.0
 
 Kirigami.Page {
+    id: root
+    property var file: ""
+
     title: "Preferences"
     actions {
         contextualActions: [
@@ -17,10 +21,13 @@ Kirigami.Page {
             }
         ]
     }
-    Rectangle {
-        color: "gray"
-        anchors.fill: parent
+
+    Viewer3D {
+        id: entity
+        file: root.file
     }
+
+
     ChartView {
         height: parent.height/3
         width: parent.width
