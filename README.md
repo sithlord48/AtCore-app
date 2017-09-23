@@ -1,5 +1,6 @@
 # AtCore-Gui
 
+```bash
 export ANDROID_NDK=/opt/android-ndk/
 # note the _ROOT postfix here, different pattern
 export ANDROID_SDK_ROOT=/opt/android-sdk/
@@ -24,6 +25,7 @@ cmake ../AtCore-Gui \
 make create-apk-atcore-gui
 
 ./atcore-gui_build_apk/build/outputs/apk/atcore-gui_build_apk-debug.apk
+```
 
 #Debug
 logcat via adb
