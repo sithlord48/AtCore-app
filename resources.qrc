@@ -2,5 +2,6 @@
     <qresource prefix="/">
         <file alias="main.qml">main.qml</file>
         <file alias="Pie.qml">Pie.qml</file>
+        <file alias="Principal.qml">Principal.qml</file>
     </qresource>
 </RCC>

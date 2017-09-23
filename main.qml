@@ -152,22 +152,6 @@ Kirigami.ApplicationItem {
 
     Component {
         id: mainPageComponent
-        Kirigami.Page {
-            title: "Preferences"
-            actions {
-                contextualActions: [
-                    Kirigami.Action {
-                        text: "Perfils"
-                    },
-                    Kirigami.Action {
-                        text: "Settings"
-                    }
-                ]
-            }
-            Rectangle {
-                color: "red"
-                anchors.fill: parent
-            }
-        }
+        Principal{}
     }
 }

@@ -15,10 +15,10 @@ include(ECMAddAppIcon)
 
 if (CMAKE_SYSTEM_NAME STREQUAL "Android")
     find_package(Qt5AndroidExtras ${REQUIRED_QT_VERSION} REQUIRED)
-    set(atcore-gui_EXTRA_LIBS Qt5::AndroidExtras Qt5::QuickControls2)
+    set(atcore-gui_EXTRA_LIBS Qt5::AndroidExtras Qt5::QuickControls2 Qt5::Charts)
 endif()
 
-find_package(Qt5 ${REQUIRED_QT_VERSION} REQUIRED NO_MODULE COMPONENTS Core Quick Test Gui Svg QuickControls2)
+find_package(Qt5 ${REQUIRED_QT_VERSION} REQUIRED NO_MODULE COMPONENTS Core Quick Test Gui Svg QuickControls2 Charts)
 
 set(atcore-gui_SRCS
     main.cpp
