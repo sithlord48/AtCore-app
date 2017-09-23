@@ -22,7 +22,7 @@ find_package(Qt5 ${REQUIRED_QT_VERSION} REQUIRED NO_MODULE COMPONENTS Core Quick
 
 set(atcore-gui_SRCS
     main.cpp
-    )
+)
 
 qt5_add_resources(RESOURCES resources.qrc)
 
