@@ -83,7 +83,7 @@ Kirigami.ApplicationItem {
                         Layout.fillWidth: true
                         editable: true
                         value: 50
-                        textFromValue: function(value) {return value + " mm/s"}
+                        textFromValue: function(value) {return value + " mm"}
                     }
                 }
 
