@@ -25,3 +25,5 @@ make create-apk-atcore-gui
 
 ./atcore-gui_build_apk/build/outputs/apk/atcore-gui_build_apk-debug.apk
 
+#Debug
+logcat via adb
