@@ -12,6 +12,7 @@ Kirigami.ApplicationItem {
         title: "AtCore Gui"
         titleIcon: "applications-graphics"
         handleVisible: true
+        width: Kirigami.Units.gridUnit * 25
 
         ColumnLayout {
             id: mainLayout
