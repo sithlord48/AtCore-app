@@ -13,7 +13,8 @@ Kirigami.ApplicationItem {
     AtCore {
         id: atcore
         onPortsChanged: devText.model = ports
-    }
+        Component.onCompleted: atcore.setSerialTimerInterval(1000)
+        }
 
     globalDrawer: Kirigami.GlobalDrawer {
         id: left
@@ -38,6 +39,7 @@ Kirigami.ApplicationItem {
                     id: devSpeed
                     editable: true
                     model: atcore.portSpeeds
+                    currentIndex: 7
                     Layout.preferredWidth: 150
                     Layout.maximumWidth: 225
                 }
