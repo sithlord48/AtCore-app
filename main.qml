@@ -11,6 +11,7 @@ Kirigami.ApplicationItem {
 
     AtCore {
         id: atcore
+        onPortsChanged: devText.model = ports
     }
 
     globalDrawer: Kirigami.GlobalDrawer {
@@ -18,7 +19,6 @@ Kirigami.ApplicationItem {
         title: "AtCore Gui"
         titleIcon: "applications-graphics"
         handleVisible: true
-        width: Kirigami.Units.gridUnit * 25
 
         ColumnLayout {
             id: mainLayout
