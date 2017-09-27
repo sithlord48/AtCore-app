@@ -96,8 +96,4 @@ Entity {
         id: lineEntity
         components: [ lineMesh, lineMaterial ]
     }
-
-    Component.onCompleted: {
-        //runLineMesh("/home/patrick/Downloads/Parametric_Pulley/parametric_pulley.gcode")
-    }
 }

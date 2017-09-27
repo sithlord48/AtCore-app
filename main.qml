@@ -7,6 +7,7 @@ import QtQuick.Dialogs 1.0
 
 Kirigami.ApplicationItem {
     id: root
+    property var file: ""
 
     globalDrawer: Kirigami.GlobalDrawer {
         id: left
@@ -54,7 +55,8 @@ Kirigami.ApplicationItem {
                         // remove prefixed "file:///"
                         path = path.replace(/^(file:\/{3})/,"");
                         // unescape html codes like '%23' for '#'
-                        var cleanPath = decodeURIComponent(path);
+                        var cleanPath = "/" + decodeURIComponent(path);
+                        root.file = cleanPath
                     }
                 }
 
@@ -171,6 +173,9 @@ Kirigami.ApplicationItem {
 
     Component {
         id: mainPageComponent
-        Principal{}
+        Principal{
+            id: principal
+            file: root.file
+        }
     }
 }
