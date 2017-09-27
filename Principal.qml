@@ -7,18 +7,6 @@ Kirigami.Page {
     id: root
     property var file: ""
 
-    title: "Preferences"
-    actions {
-        contextualActions: [
-            Kirigami.Action {
-                text: "Perfils"
-            },
-            Kirigami.Action {
-                text: "Settings"
-            }
-        ]
-    }
-
     Viewer3D {
         id: entity
         file: root.file
