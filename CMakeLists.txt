@@ -14,6 +14,8 @@ include(ECMInstallIcons)
 include(ECMAddAppIcon)
 
 if (CMAKE_SYSTEM_NAME STREQUAL "Android")
+    add_definitions(-DMOBILE)
+
     find_package(Qt5AndroidExtras ${REQUIRED_QT_VERSION} REQUIRED)
     set(atcore-gui_EXTRA_LIBS
         Qt5::AndroidExtras
@@ -47,9 +49,12 @@ find_package(Qt5 ${REQUIRED_QT_VERSION} REQUIRED NO_MODULE COMPONENTS
     3DRender
     3DInput
 )
-find_package(AtCore REQUIRED COMPONENTS
-    AtCore
-)
+
+if (NOT CMAKE_SYSTEM_NAME STREQUAL "Android")
+    find_package(AtCore REQUIRED COMPONENTS
+        AtCore
+    )
+endif()
 
 set(atcore-gui_SRCS
     main.cpp
@@ -61,6 +66,10 @@ add_subdirectory(viewer3d)
 
 add_executable(atcore-gui ${atcore-gui_SRCS} ${RESOURCES})
 
-target_link_libraries(atcore-gui AtCore::AtCore Qt5::Core  Qt5::Qml Qt5::Quick Qt5::Svg AtCore3D ${atcore-gui_EXTRA_LIBS})
+if (NOT CMAKE_SYSTEM_NAME STREQUAL "Android")
+    target_link_libraries(atcore-gui AtCore::AtCore Qt5::Core Qt5::Qml Qt5::Quick Qt5::Svg AtCore3D ${atcore-gui_EXTRA_LIBS})
+else()
+    target_link_libraries(atcore-gui Qt5::Core Qt5::Qml Qt5::Quick Qt5::Svg AtCore3D ${atcore-gui_EXTRA_LIBS})
+endif()
 
 install(TARGETS atcore-gui ${KF5_INSTALL_TARGETS_DEFAULT_ARGS})
