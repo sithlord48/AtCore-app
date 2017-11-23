@@ -12,9 +12,8 @@ Kirigami.ApplicationItem {
 
     AtCore {
         id: atcore
-        onPortsChanged: devText.model = ports
         Component.onCompleted: atcore.setSerialTimerInterval(1000)
-        }
+    }
 
     globalDrawer: Kirigami.GlobalDrawer {
         id: left
@@ -37,19 +36,21 @@ Kirigami.ApplicationItem {
                 }
                 ComboBox{
                     id: devSpeed
-                    editable: true
+                    editable: false
                     model: atcore.portSpeeds
                     currentIndex: 7
                     Layout.preferredWidth: 150
                     Layout.maximumWidth: 225
                 }
-                Button {
-                    text: "Connect"
-                    onClicked: {
-                        atcore.initSerial(devText.text, devSpeed.currentText.valueOf())
-                        rowPie.visible = !rowPie.visible
-                    }
+            }
+
+            Button {
+                text: "Connect"
+                onClicked: {
+                    atcore.initSerial(devText.text, devSpeed.currentText.valueOf())
+                    rowPie.visible = !rowPie.visible
                 }
+                Layout.preferredWidth: 300
             }
 
             RowLayout {
