@@ -46,7 +46,6 @@ Kirigami.ApplicationItem {
             Button {
                 text: "Connect"
                 onClicked: {
-                    rowPie.visible = !rowPie.visible
                 }
                 Layout.preferredWidth: 300
             }

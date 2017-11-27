@@ -48,7 +48,6 @@ Kirigami.ApplicationItem {
                 text: "Connect"
                 onClicked: {
                     atcore.initSerial(devText.text, devSpeed.currentText.valueOf())
-                    rowPie.visible = !rowPie.visible
                 }
                 Layout.preferredWidth: 300
             }
