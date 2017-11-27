@@ -31,7 +31,7 @@ Kirigami.ApplicationItem {
                     id: devText
                     editable: true
                     model: atcore.serialPorts
-                    Layout.preferredWidth: 150
+                    Layout.preferredWidth: Kirigami.Units.gridUnit*10
                     Layout.fillWidth: true
                 }
                 ComboBox{
@@ -39,8 +39,7 @@ Kirigami.ApplicationItem {
                     editable: false
                     model: atcore.portSpeeds
                     currentIndex: 7
-                    Layout.preferredWidth: 150
-                    Layout.maximumWidth: 225
+                    Layout.preferredWidth: Kirigami.Units.gridUnit*10
                 }
             }
 
@@ -49,7 +48,7 @@ Kirigami.ApplicationItem {
                 onClicked: {
                     atcore.initSerial(devText.text, devSpeed.currentText.valueOf())
                 }
-                Layout.preferredWidth: 300
+                Layout.fillWidth: true
             }
 
             RowLayout {
