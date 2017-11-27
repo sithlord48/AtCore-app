@@ -80,7 +80,12 @@ Kirigami.ApplicationItem {
 
                 Button {
                     text: "Print"
-                    onClicked: atcore.print(cleanPath)
+                    onClicked: {
+                        if(!root.file) {
+                            return
+                        }
+                        atcore.print(root.file)
+                    }
                 }
             }
 
