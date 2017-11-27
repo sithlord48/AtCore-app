@@ -66,6 +66,10 @@ Kirigami.ApplicationItem {
                 FileDialog {
                     id: fileDialog
                     title: "Please choose a file"
+                    selectExisting: true
+                    selectFolder: false
+                    selectMultiple: false
+                    nameFilters: [ "GCode file (*.gcode)"]
                     folder: shortcuts.home
                     onAccepted: {
                         // https://stackoverflow.com/questions/24927850/get-the-path-from-a-qml-url
