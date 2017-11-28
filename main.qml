@@ -6,7 +6,7 @@ import QtQuick.Extras 1.4
 import QtQuick.Dialogs 1.0
 import org.kde.atcore 1.0
 
-Kirigami.ApplicationItem {
+Kirigami.ApplicationWindow {
     id: root
     property var file: ""
 
@@ -113,10 +113,10 @@ Kirigami.ApplicationItem {
 
                 RowLayout {
                     id: rowPie
+                    width: Kirigami.Units.gridUnit*19
                     height: width
                     Pie {
                         id: pie
-                        width: rowPie.width
                         visible: true
                     }
                 }

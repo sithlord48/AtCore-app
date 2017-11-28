@@ -6,6 +6,7 @@
 #include <QDebug>
 
 #ifndef MOBILE
+#include <KStatusNotifierItem>
 #include <AtCore/AtCore>
 #endif
 #include "gridmesh.h"
@@ -22,24 +23,33 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
     // Enable high dpi support
     app.setAttribute(Qt::AA_UseHighDpiPixmaps, true);
 
-    QQuickView view;
-
 #ifndef MOBILE
     qmlRegisterType<AtCore>("org.kde.atcore", 1, 0, "AtCore");
-    view.rootContext()->setContextProperty("mobile", false);
-#else
-    view.rootContext()->setContextProperty("mobile", true);
 #endif
     qmlRegisterType<GridMesh>("GridMesh", 1, 0, "GridMesh");
     qmlRegisterType<LineMesh>("LineMesh", 1, 0, "LineMesh");
-
-    view.setResizeMode(QQuickView::SizeRootObjectToView);
 #ifndef MOBILE
-    view.setSource(QUrl(QStringLiteral("qrc:///main.qml")));
+    app.setQuitOnLastWindowClosed(false);
+
+    auto *engine = new QQmlApplicationEngine("qrc:/main.qml");
+    KStatusNotifierItem *statusNotifier = nullptr;
+    for(auto obj : engine->rootObjects()) {
+            if (auto window = qobject_cast<QWindow*>(obj)) {
+            statusNotifier = new KStatusNotifierItem();
+            statusNotifier->setIconByName(QStringLiteral("atcore-app"));
+            statusNotifier->setCategory(KStatusNotifierItem::ApplicationStatus);
+            statusNotifier->setStatus(KStatusNotifierItem::Active);
+            QObject::connect(statusNotifier, &KStatusNotifierItem::activateRequested, [window]{
+                window->show();
+            });
+            break;
+        }
+    }
 #else
-    view.setSource(QUrl(QStringLiteral("qrc:///main_mobile.qml")));
-#endif
+    QQuickView view;
+    view.setSource(QUrl(QStringLiteral("qrc:/main_mobile.qml")));
     view.show();
+#endif
 
     return app.exec();
 }
