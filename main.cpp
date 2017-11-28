@@ -18,6 +18,10 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
     QGuiApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
     QApplication app(argc, argv);
 
+
+    // Enable high dpi support
+    app.setAttribute(Qt::AA_UseHighDpiPixmaps, true);
+
     QQuickView view;
 
 #ifndef MOBILE
