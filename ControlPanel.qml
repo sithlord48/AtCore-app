@@ -5,7 +5,7 @@ import QtQuick.Layouts 1.3
 
 ColumnLayout {
     id: mainLayout
-    property var par: parent
+    property var file: ""
     Layout.fillWidth: true
 
     RowLayout {
@@ -59,17 +59,17 @@ ColumnLayout {
                 path = path.replace(/^(file:\/{3})/,"");
                 // unescape html codes like '%23' for '#'
                 var cleanPath = "/" + decodeURIComponent(path);
-                parent.file = cleanPath
+                file = cleanPath
             }
         }
 
         Button {
             text: "Print"
             onClicked: {
-                if(!parent.file) {
+                if(!file) {
                     return
                 }
-                atcore.print(parent.file)
+                atcore.print(file)
             }
         }
     }

@@ -3,7 +3,6 @@ import QtQuick.Controls 2.2
 import QtQuick.Layouts 1.3
 import org.kde.kirigami 2.1 as Kirigami
 import QtQuick.Extras 1.4
-import QtQuick.Dialogs 1.0
 import org.kde.atcore 1.0
 
 Kirigami.ApplicationWindow {
@@ -40,7 +39,7 @@ Kirigami.ApplicationWindow {
         id: mainPageComponent
         Principal{
             id: principal
-            file: root.file
+            file: controlPanel.file
 
             actions {
                 contextualActions: [
