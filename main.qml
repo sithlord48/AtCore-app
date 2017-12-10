@@ -209,6 +209,24 @@ Kirigami.ApplicationWindow {
         Principal{
             id: principal
             file: root.file
+
+            actions {
+                contextualActions: [
+                    Kirigami.Action {
+                        text: "Logger"
+                        onTriggered: {
+                            pageStack.push(loggerPage)
+                        }
+                    }
+                ]
+            }
+        }
+    }
+
+    Component {
+        id: loggerPage
+        LoggerPage{
+            id: logger
         }
     }
 }

@@ -1,5 +1,6 @@
 #include <QApplication>
 #include <QQuickView>
+#include <QQmlEngine>
 #include <QtQml>
 #include <QUrl>
 #include <QDir>
@@ -11,10 +12,22 @@
 #endif
 #include "gridmesh.h"
 #include "linemesh.h"
+#include "logger.h"
+
+QObject *loggerRegister(QQmlEngine *engine, QJSEngine *scriptEngine)
+{
+    Q_UNUSED(engine)
+    Q_UNUSED(scriptEngine)
+
+    return Logger::self();
+}
 
 Q_DECL_EXPORT int main(int argc, char *argv[])
 {
     Q_INIT_RESOURCE(viewer3d);
+    Q_INIT_RESOURCE(logger);
+
+    qInstallMessageHandler(Logger::self()->messageHandle);
 
     QGuiApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
     QApplication app(argc, argv);
@@ -28,6 +41,8 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
 #endif
     qmlRegisterType<GridMesh>("GridMesh", 1, 0, "GridMesh");
     qmlRegisterType<LineMesh>("LineMesh", 1, 0, "LineMesh");
+    Logger::self();
+    qmlRegisterSingletonType<Logger>("Logger", 1, 0, "Logger", &loggerRegister);
 #ifndef MOBILE
     app.setQuitOnLastWindowClosed(false);
 

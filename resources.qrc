@@ -4,5 +4,6 @@
         <file alias="main_mobile.qml">main_mobile.qml</file>
         <file alias="Pie.qml">Pie.qml</file>
         <file alias="Principal.qml">Principal.qml</file>
+        <file alias="LoggerPage.qml">LoggerPage.qml</file>
     </qresource>
 </RCC>

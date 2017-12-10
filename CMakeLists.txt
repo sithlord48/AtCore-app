@@ -75,13 +75,14 @@ qt5_add_resources(RESOURCES resources.qrc)
 
 add_subdirectory(icons)
 add_subdirectory(viewer3d)
+add_subdirectory(logger)
 
 add_executable(atcore-gui ${atcore-gui_SRCS} ${RESOURCES})
 
 if (NOT CMAKE_SYSTEM_NAME STREQUAL "Android")
-    target_link_libraries(atcore-gui AtCore::AtCore Qt5::Core Qt5::Qml Qt5::Quick Qt5::Widgets Qt5::Svg AtCore3D KF5::Notifications ${atcore-gui_EXTRA_LIBS})
+    target_link_libraries(atcore-gui AtCore::AtCore Qt5::Core Qt5::Qml Qt5::Quick Qt5::Widgets Qt5::Svg AtCore3D AtCoreLogger KF5::Notifications ${atcore-gui_EXTRA_LIBS})
 else()
-    target_link_libraries(atcore-gui Qt5::Core Qt5::Qml Qt5::Quick Qt5::Widgets Qt5::Svg AtCore3D ${atcore-gui_EXTRA_LIBS})
+    target_link_libraries(atcore-gui Qt5::Core Qt5::Qml Qt5::Quick Qt5::Widgets Qt5::Svg AtCore3D AtCoreLogger ${atcore-gui_EXTRA_LIBS})
 endif()
 
 install(TARGETS atcore-gui ${KF5_INSTALL_TARGETS_DEFAULT_ARGS})
