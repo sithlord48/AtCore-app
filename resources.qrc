@@ -5,5 +5,6 @@
         <file alias="Pie.qml">Pie.qml</file>
         <file alias="Principal.qml">Principal.qml</file>
         <file alias="LoggerPage.qml">LoggerPage.qml</file>
+        <file alias="ControlPanel.qml">ControlPanel.qml</file>
     </qresource>
 </RCC>
