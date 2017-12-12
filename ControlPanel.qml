@@ -15,23 +15,21 @@ ColumnLayout {
             id: devText
             editable: true
             model: atcore.serialPorts
-            Layout.fillWidth: true
         }
         ComboBox{
-            id: devSpeed
+            id: profileName
             editable: false
-            model: atcore.portSpeeds
-            currentIndex: 7
+            model: ["Use Settings"]
+        }
+        Button {
+            text: "Connect"
+            onClicked: {
+                atcore.initSerial(devText.text, settingsPage.cbPortSpeed.currentText.valueOf())
+            }
+            Layout.fillWidth: true
         }
     }
 
-    Button {
-        text: "Connect"
-        onClicked: {
-            atcore.initSerial(devText.text, devSpeed.currentText.valueOf())
-        }
-        Layout.fillWidth: true
-    }
 
     RowLayout {
         id: printMenu

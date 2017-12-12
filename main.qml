@@ -48,6 +48,12 @@ Kirigami.ApplicationWindow {
                         onTriggered: {
                             pageStack.push(loggerPage)
                         }
+                    },
+                    Kirigami.Action {
+                        text: "Settings"
+                        onTriggered: {
+                            pageStack.push(settingsPage)
+                        }
                     }
                 ]
             }
@@ -58,6 +64,12 @@ Kirigami.ApplicationWindow {
         id: loggerPage
         LoggerPage{
             id: logger
+        }
+    }
+    Component {
+        id: settingsPage
+        SettingsPage {
+            id: settings
         }
     }
 }
